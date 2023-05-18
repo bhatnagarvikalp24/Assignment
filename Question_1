@@ -1,0 +1,15 @@
+SELECT
+  u.utm_source,
+  COUNT(DISTINCT u.user_id) AS total_users,
+  SUM(r.total_payout_in_paise) / 100 AS total_payout,
+  SUM(r.total_revenue_in_paise) / 100 AS total_revenue,
+  (SUM(r.total_revenue_in_paise) - SUM(r.total_payout_in_paise)) / 100 AS total_profit,
+  (SUM(r.total_revenue_in_paise) - SUM(r.total_payout_in_paise)) / COUNT(DISTINCT u.user_id) / 100 AS LTV
+FROM
+  user_signup_data u
+JOIN
+  user_offer_completion_data o ON u.user_id = o.user_id
+JOIN
+  rewards_details r ON o.reward_id = r.reward_id
+GROUP BY
+  u.utm_source;
