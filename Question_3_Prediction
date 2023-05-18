@@ -1,0 +1,12 @@
+SELECT
+  day,
+  ROUND(average_referrals_per_day * (DATEDIFF(day, '2022-11-01') + 1)) AS predicted_referrals
+FROM
+  November_Sikka_numbers,
+  (SELECT AVG(referrals) AS average_referrals_per_day FROM November_Sikka_numbers WHERE day <= '2022-10-31') AS avg_referrals
+WHERE
+  day BETWEEN '2022-11-01' AND '2022-11-15';
+
+This query calculates the predicted number of referrals for each day between '2022-11-01' and '2022-11-15' by multiplying the average referrals per day by the number of days between the prediction period and '2022-11-01'. It also includes the 'day' column to display the corresponding dates.
+
+Running this query will provide the predicted number of referrals for the first 15 days of November based on the average referrals per day in October.
