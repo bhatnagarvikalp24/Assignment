@@ -1,0 +1,11 @@
+Offer Initiation by Users:
+
+SELECT
+  app_id,
+  COUNT(DISTINCT offer_id) AS total_offers_initiated
+FROM
+  user_offer_data
+GROUP BY
+  app_id;
+
+This query counts the number of distinct offers initiated by users for each app. It provides insights into the engagement level of users with the offers in each app.
