@@ -1,0 +1,12 @@
+Offer Completion by Users:
+
+SELECT
+  app_id,
+  COUNT(DISTINCT user_id) AS total_users_completed_offers,
+  COUNT(DISTINCT offer_id) AS total_offers_completed
+FROM
+  user_offer_completion_data
+GROUP BY
+  app_id;
+
+This query counts the number of distinct users and offers completed for each app. It helps understand the user engagement and the effectiveness of offers in driving completion.
